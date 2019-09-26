@@ -1,3 +1,4 @@
 pyunifi
 gpiozero
 RPi.GPIO
+adafruit-circuitpython-charlcd
