@@ -4,7 +4,6 @@ import argparse
 import config
 import board
 import digitalio
-import time
 import adafruit_character_lcd.character_lcd as characterlcd
 
 from pyunifi.controller import Controller
@@ -61,11 +60,6 @@ def generate_guest():
 
     lcd.message = 'Guest voucher\n{}'.format(pvou)
 
-    time.sleep(5)
-    lcd.clear()
-
-    lcd.message = 'Press button to\ngenerate voucher'
-
 def generate_customer():
     cvou = c.create_voucher(1, 1, 5, up_bandwidth=512, down_bandwidth=512, byte_quota=1024, note="unipi customer")
     vou = cvou[0].get('code')
@@ -84,15 +78,17 @@ def generate_customer():
 
     lcd.message = 'Customer voucher\n{}'.format(pvou)
 
-    time.sleep(5)
-    lcd.clear()
-
-    lcd.message = 'Press button to\ngenerate voucher'
+def generate_clear():
+    if button4.is_pressed:
+        lcd.clear()
+        lcd.message = 'Press button to\ngenerate voucher'
 
 button2 = Button(2)
 button3 = Button(3)
+button4 = Button(4)
 
 button2.when_pressed = generate_guest
 button3.when_pressed = generate_customer
+button4.when_pressed = generate_clear
 
 pause()
