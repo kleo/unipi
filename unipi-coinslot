@@ -59,21 +59,23 @@ while True:
     total = 0
     coinslotState = True
     counter = 0
+    lcd.clear()
     lcd.message = 'Insert coin and\npress confirm'
-    print(f'total: {total}, counter: {counter}, state: {coinslotState}')
     while coinslotState:
         if coinslot.is_pressed:
             counter+=1
             time.sleep(.05)
             print(counter)
-            lcd.clear()
-            lcd.message = '{} Pesos\ninserted'.format(counter)
+            lcd.clear() 
+            if counter == 1:
+                lcd.message = '{} Peso\ninserted'.format(counter)
+            else:
+                lcd.message = '{} Pesos\ninserted'.format(counter)
             
         if confirm.is_pressed:
             coinslotState = False
 
             total = counter * 5
-            print(f'total: {total}, counter: {counter}, state: {coinslotState}')
 
             def generate_guest():
                 cvou = c.create_voucher(1, 1, total, note="unipi guest")
@@ -90,9 +92,11 @@ while True:
                 print(pvou)
 
                 lcd.clear()
-
-                lcd.message = 'Guest voucher\n{}'.format(pvou)
-                time.sleep(60)
+                a = 60
                 
+                while a != 0:
+                    lcd.message = 'Guest voucher {:2d}\n{}'.format(a, pvou)
+                    time.sleep(1)
+                    a = a-1
+
             generate_guest()
-            
