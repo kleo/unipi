@@ -24,6 +24,7 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lc
 
 coinslot = Button(17)
 confirm = Button(2,bounce_time=5)
+reset = Button(3,bounce_time=5)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -57,29 +58,34 @@ c = Controller(args.controller, args.username, args.password, args.port, args.ve
     
 while True:
     total = 0
-    coinslotState = True
+    state = True
     counter = 0
     lcd.clear()
     lcd.message = 'Insert coin and\npress confirm'
-    while coinslotState:
+    while state:
         if coinslot.is_pressed:
             counter+=1
             time.sleep(.05)
-            print(counter)
             lcd.clear() 
+            
             if counter == 1:
                 lcd.message = '{} Peso\ninserted'.format(counter)
             else:
                 lcd.message = '{} Pesos\ninserted'.format(counter)
-            
-        if confirm.is_pressed:
-            coinslotState = False
 
+        if confirm.is_pressed:
+            state = False
             total = counter * 5
 
+            if total == 0:
+                lcd.clear()
+                lcd.message = 'No coin inserted'
+                time.sleep(5)
+                break
+
             def generate_guest():
-                cvou = c.create_voucher(1, 1, total, note="unipi guest")
-                vou = cvou[0].get('code')
+                voucher = c.create_voucher(1, 1, total, note="unipi guest")
+                code = voucher[0].get('code')
 
                 def format_code(string):
                     length_string = len(string)
@@ -88,15 +94,16 @@ while True:
                     second_half = string[first_length:].upper()
                     return first_half + '-' + second_half
 
-                pvou = format_code(vou)
-                print(pvou)
+                voucher_code = format_code(code)
 
                 lcd.clear()
-                a = 60
+                timeout = 90
+                while timeout != 0:
+                    if reset.is_pressed:
+                        break
                 
-                while a != 0:
-                    lcd.message = 'Guest voucher {:2d}\n{}'.format(a, pvou)
+                    lcd.message = 'Guest voucher {:2d}\n{}'.format(timeout, voucher_code)
                     time.sleep(1)
-                    a = a-1
+                    timeout = timeout-1
 
             generate_guest()
