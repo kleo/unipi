@@ -9,6 +9,7 @@ import adafruit_character_lcd.character_lcd as characterlcd
 
 from pyunifi.controller import Controller
 from gpiozero import Button
+from gpiozero import OutputDevice
 
 lcd_rs = digitalio.DigitalInOut(board.D26)
 lcd_en = digitalio.DigitalInOut(board.D19)
@@ -25,6 +26,7 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lc
 coinslot = Button(17)
 confirm = Button(2,bounce_time=5)
 reset = Button(3,bounce_time=5)
+coinslotpower = OutputDevice(4)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -79,12 +81,14 @@ while True:
 
             if total == 0:
                 lcd.clear()
-                lcd.message = 'No coin inserted'
+                lcd.message = 'No coin inserted\nplease wait'
+                coinslotpower.off()
                 time.sleep(5)
+                coinslotpower.on()
                 break
 
             def generate_guest():
-                voucher = c.create_voucher(1, 1, total, note="unipi guest")
+                voucher = c.create_voucher(1, 1, total, up_bandwidth=4098, down_bandwidth=4098, byte_quota=1000, note="unipi guest")
                 code = voucher[0].get('code')
 
                 def format_code(string):
