@@ -1,4 +1,4 @@
-FROM python:3.7.3-buster
+FROM python:3.7.5-buster
 
 RUN apt-get update && apt-get install build-essential
 WORKDIR /unipi
