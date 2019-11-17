@@ -2,7 +2,9 @@
 
 # Install required dependencies
 
+```
 $ sudo apt install git python3-venv
+```
 
 # Controller
 
@@ -12,12 +14,14 @@ If you already have an existing Controller skip to [Setup virtual environment](#
 
 ## Install Docker using the convenience script
 
+```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
 sudo usermod -aG docker pi
 
 sudo apt install docker-compose
+```
 
 ## Install Unifi Docker Controller for Raspberry Pi 2/3
 
@@ -39,7 +43,7 @@ $ pip install -r requirements.txt
 
 # Configure config.ini
 
-Default config.ini provides defaults for the Controller setup on the Raspberry Pi and only requires the password.
+Default config.ini provides defaults for the Controller setup on the Raspberry Pi.
 
 Example config.ini
 
@@ -62,3 +66,5 @@ nosslverify = True
 # verify with ssl certificate pem file (not required)
 certificate =  
 ```
+
+
