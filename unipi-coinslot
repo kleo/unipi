@@ -58,6 +58,7 @@ if ssl_verify and len(args.certificate) > 0:
 
 c = Controller(args.controller, args.username, args.password, args.port, args.version, args.siteid, ssl_verify=ssl_verify)
     
+# https://stackoverflow.com/questions/52126586/python-scripting-for-coins-slot-raspberry-pi
 while True:
     total = 0
     state = True
@@ -101,6 +102,7 @@ while True:
                 voucher_code = format_code(code)
 
                 lcd.clear()
+                # https://stackoverflow.com/a/18175488/10025507
                 timeout = 90
                 while timeout != 0:
                     if reset.is_pressed:
