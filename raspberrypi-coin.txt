@@ -1,0 +1,15 @@
+please insert coin
+1 peso = 5 minutes 
+5 pesos = 25 minutes
+display how much coins inserted
+timeout 60 seconds or confirm using button
+check if unifi controller available
+generate voucher 
+display or print voucher
+return display to please insert coin
+
+bandwidth upload/download can be changed in code
+vouchers can set to be one time use or multiple use
+
+unifi controller can be on raspberry pi, on premise server or cloud server
+includes all unifi controller features: hotspot manager, statistics, portal customization etc.
