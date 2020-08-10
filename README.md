@@ -75,8 +75,6 @@ $ sudo usermod -aG docker pi
 $ newgrp docker
 
 $ sudo apt install docker-compose
-
-$ reboot
 ```
 
 #### Install Docker UniFi Controller for Raspberry Pi
