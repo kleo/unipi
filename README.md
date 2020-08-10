@@ -58,7 +58,7 @@ Cut and connect Micro USB power cable to BL-100 switching power supply 5V and gr
 
 Controller setup is for Raspberry Pi without a controller server existing on the network.
 
-If you already have an existing Controller skip to [Setup Client](#Setup Client).
+If you already have an existing Controller skip to [Setup Client](#setup-client).
 
 #### Flashing Raspbian
 
