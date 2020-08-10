@@ -35,9 +35,9 @@ https://i.imgur.com/49pc6Gu.png
 
 1. Raspberry Pi 3 Model B
 2. Micro SD Card
-3. Allan universal coinslot
-4. BL-100 switching power supply
-5. 2 pieces Yenox button switch
+3. Universal coinslot
+4. Switching power supply
+5. 2 pieces button switch
 6. Jumper wires
 7. 16x2 character LCD
 8. 1 Piece 3.3k Ohms 5% resistor # for setting character LCD contrast
@@ -62,34 +62,34 @@ If you already have an existing Controller skip to [Setup Client](#Setup Client)
 
 #### Flashing Raspbian
 
-Download Raspbian Buster Lite from [raspberrypi.org](https://www.raspberrypi.org/downloads/raspbian/)
-
-Latest tested release is Raspbian Buster Lite 2020-02-13
+Download Raspberry Pi OS (32-bit) Lite from [raspberrypi.org](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
 
 #### Install Docker using the convenience script
 
 ```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
 
-sudo usermod -aG docker pi
+$ sudo usermod -aG docker pi
 
-logout
+$ newgrp docker
 
-sudo apt install docker-compose
+$ sudo apt install docker-compose
+
+$ reboot
 ```
-
-Note: Ensure you have added user pi into the docker group since we're going to need privileged permission to allow the docker client to use the GPIO pins.
 
 #### Install Docker UniFi Controller for Raspberry Pi
 
 ```
 $ mkdir unifi && cd unifi
 $ curl -O https://raw.githubusercontent.com/ryansch/docker-unifi-rpi/master/docker-compose.yml
-$ sudo docker-compose up -d
+$ docker-compose up -d
 ```
 
-Wait for a few minutes and the controller should be up at `https://raspberrypi.local:8443`
+Wait for a few minutes and the controller should be up at `https://raspberrypi.local:8443` or `https://<ip>:8443`
+
+Tested on UniFi controller version 5.13.32(Build: atag_5.13.32_13646) on latest tag.
 
 #### Configure UniFi controller (Classic settings)
 
@@ -119,6 +119,15 @@ Customize Portal to your preference
 ##### Hotspot
 
 Enable voucher-based authorization
+
+## Setup Client
+
+### Clone UniPi
+
+```
+$ cd ~
+$ git clone https://github.com/kbeflo/unipi
+```
 
 ### Configure config.ini
 
@@ -153,7 +162,7 @@ More info on `create_voucher()` at [PyUnifi create_voucher](https://github.com/f
 ### Start UniPi client
 
 ```
-docker-compose up -d
+$ docker-compose up -d
 ```
 
 ## Manual setup/development

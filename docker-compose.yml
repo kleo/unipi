@@ -2,4 +2,7 @@ version: '3'
 services:
   unipi-coinslot:
     build: .
-    privileged: true
+    volumes:
+        - '/sys:/sys'
+    devices:
+        - /dev/gpiomem
