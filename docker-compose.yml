@@ -1,8 +1,13 @@
 version: '3'
 services:
-  unipi-coinslot:
+  unipi:
     build: .
+    image: kbeflo/unipi:latest
+    container_name: unipi
+    restart: always
     volumes:
-        - '/sys:/sys'
+        - /sys:/sys
+        - ${PWD}/config.ini:/unipi/config.ini
     devices:
         - /dev/gpiomem
+
