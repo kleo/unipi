@@ -1,10 +1,9 @@
-FROM python:3.7.5-buster
+FROM python:alpine
 
-RUN apt-get update && apt-get install build-essential
 WORKDIR /unipi
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+COPY requirements.txt coinslot.py ./
+RUN apk add --no-cache --virtual .build-deps build-base \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apk del .build-deps
 
-COPY . .
-
-ENTRYPOINT [ "python3", "./unipi-coinslot" ]
+ENTRYPOINT [ "python", "./coinslot.py" ]
