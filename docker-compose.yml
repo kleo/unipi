@@ -1,6 +1,7 @@
 version: '3'
 services:
   unipi:
+    build: .
     image: kbeflo/unipi:latest
     container_name: unipi
     restart: always
