@@ -1,4 +1,4 @@
-FROM arm32v7/python:alpine
+FROM python:alpine
 
 WORKDIR /unipi
 COPY requirements.txt coinslot.py ./
