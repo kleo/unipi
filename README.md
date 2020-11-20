@@ -2,21 +2,17 @@
 
 UniPi is a WiFi voucher vending machine leveraging UniFi controller and UniFi access points. 
 
-## Showcase 
-
-Demo video:
+### Demo
 
 [![UniPi demo](https://img.youtube.com/vi/2ENAeLyCjZY/0.jpg)](https://youtu.be/2ENAeLyCjZY)
 
-Pics:
+### Pics
 
-https://i.imgur.com/SMFueoG.png
+1. [WiFi selection](https://user-images.githubusercontent.com/13497504/99747751-1e25ca00-2b16-11eb-8bc9-caf6cbab3582.png)
 
-https://i.imgur.com/csB4H9F.png
+2. [Voucher entry](https://user-images.githubusercontent.com/13497504/99747756-20882400-2b16-11eb-95db-4244f7b673f9.png)
 
-https://i.imgur.com/FHpDtTe.jpg
-
-https://i.imgur.com/49pc6Gu.png
+3. [Finished build](https://user-images.githubusercontent.com/13497504/99747759-21b95100-2b16-11eb-9b05-f19be4b7a883.jpg)
 
 ##### Example use cases
 
@@ -46,7 +42,11 @@ https://i.imgur.com/49pc6Gu.png
 
 #### Wiring
 
-For breadboard setup see `unipi.fzz` using [Fritzing](https://fritzing.org).
+Breadboard setup
+
+<img src="https://user-images.githubusercontent.com/13497504/99748589-c5efc780-2b17-11eb-85b9-c8f2c1126d92.png" width="600"/>
+
+Also included `unipi.fzz` using [Fritzing](https://fritzing.org)
 
 Finalization includes removing breadboard and connecting button and ground pins directly to the Raspberry Pi.
 
