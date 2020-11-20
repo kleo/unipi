@@ -180,8 +180,3 @@ $ pip install -r requirements.txt
 
 $ python unipi-coinslot
 ```
-
-### TODO
-
-* Create UniPi Raspbian image
-* Web interface for modifying config.ini, bandwidth limit, data cap and pricing.
