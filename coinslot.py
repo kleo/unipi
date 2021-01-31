@@ -89,7 +89,7 @@ while True:
 
         if confirm.is_pressed:
             state = False
-            total = counter * 5
+            total = counter * 4 # 1 peso = 4 minutes
 
             if total == 0:
                 lcd.clear()
@@ -100,7 +100,7 @@ while True:
                 break
 
             def generate_guest():
-                voucher = c.create_voucher(1, 1, total, up_bandwidth=4098, down_bandwidth=4098, byte_quota=1000, note="unipi guest")
+                voucher = c.create_voucher(1, 1, total, up_bandwidth=4098, down_bandwidth=4098, note="unipi guest") # remove quota
                 code = voucher[0].get('code')
 
                 def format_code(string):
