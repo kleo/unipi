@@ -1,0 +1,13 @@
+[Unit]
+Description=unipi service
+After=network.target network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=60
+WorkingDirectory=/home/pi/unipi
+ExecStart=/home/pi/unipi/venv/bin/python /home/pi/unipi/coinslot.py
+
+[Install]
+WantedBy=multi-user.target
