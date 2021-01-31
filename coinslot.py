@@ -6,6 +6,7 @@ import board
 import time
 import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
+import os
 
 from pyunifi.controller import Controller
 from gpiozero import Button
@@ -75,6 +76,16 @@ while True:
                 lcd.message = '{} Peso\ninserted'.format(counter)
             else:
                 lcd.message = '{} Pesos\ninserted'.format(counter)
+
+        # https://gist.github.com/alaudet/9e280d190bff83830dc7
+        if reset.is_pressed:
+            time.sleep(5)
+            if reset.is_pressed:
+                    lcd.clear()
+                    lcd.message = "Shutting down"
+
+                    cmd = "sudo shutdown -h now"
+                    os.system(cmd)
 
         if confirm.is_pressed:
             state = False
