@@ -124,7 +124,7 @@ Enable voucher-based authorization
 
 ```
 $ cd ~
-$ git clone https://github.com/kbeflo/unipi
+$ git clone https://github.com/kleo/unipi
 ```
 
 ### Configure config.ini
